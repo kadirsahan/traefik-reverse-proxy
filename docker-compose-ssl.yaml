@@ -7,7 +7,7 @@ services:
     command:
       - --api.insecure=true
       - --providers.docker
-      - --providers.file.directory=/etc/traefik/dynamic
+      - --providers.file.directory=/etc/traefik/
       - --entryPoints.web.address=:80
       - --entryPoints.websecure.address=:443
     ports:
@@ -23,9 +23,9 @@ services:
       # Allows Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock:ro
       # Mount the dynamic configuration
-      - ./certs-traefik.yaml:/etc/traefik/dynamic/certs-traefik.yaml
+      - ./certs-traefik.yaml:/etc/traefik/certs-traefik.yaml
       # Mount the directory containing the certs
-      - ./certs:/etc/certs/
+      - ./openssl/:/certs/
   app1:
     image: nginx:1.17.6-alpine
     expose:

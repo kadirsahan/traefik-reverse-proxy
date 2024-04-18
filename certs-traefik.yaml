@@ -1,0 +1,32 @@
+# log default is ERROR, but WARN is more helpful
+log:
+  level: INFO
+  # level: INFO
+providers:
+  docker:
+    exposedByDefault: false
+    watch: true
+  file:
+    fileName: /etc/traefik/certs-traefik.yaml
+    watch: true
+
+## DYNAMIC CONFIG
+
+tls:
+  certificates:
+    - certFile: /certs/example.com.crt
+      keyFile: /certs/example.com.key
+      stores:
+        - default
+# Specifying the default certificate
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /certs/example.com.crt
+        keyFile: /certs/example.com.key
+
+  # options:
+  #   default:
+  #     sniStrict: true
+
+
